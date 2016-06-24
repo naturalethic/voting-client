@@ -2,13 +2,8 @@ import jsdom from 'jsdom'
 import chai from 'chai'
 import chaiImmutable from 'chai-immutable'
 
-// import { describe, it } from 'mocha'
-
-const doc = jsdom.jsdom('<!doctype html><html><body></body></html>')
-const win = doc.defaultView
-
-global.document = doc
-global.window = win
+global.document = jsdom.jsdom('<!doctype html><html><body></body></html>')
+global.window = document.defaultView
 
 Object.keys(window).forEach((key) => {
   if (!(key in global)) {

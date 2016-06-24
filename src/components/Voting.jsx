@@ -1,21 +1,17 @@
-import React, { Component, PropTypes } from 'react'
+import React, { PropTypes } from 'react'
+import Winner from './Winner'
+import Vote from './Vote'
 
-export default class Voting extends Component {
-  static propTypes = {
-    pair: PropTypes.arrayOf(PropTypes.string).isRequired,
-  }
-  getPair() {
-    return this.props.pair || []
-  }
-  render() {
-    return (
-      <div className="voting">
-        {this.getPair().map(entry =>
-          <button key={entry}>
-            <h1>{entry}</h1>
-          </button>
-        )}
-      </div>
-    )
-  }
+export default function Voting(props) {
+  return (
+    <div>
+    {props.winner ?
+      <Winner winner={props.winner} /> :
+      <Vote {...props} />}
+    </div>
+  )
+}
+
+Voting.propTypes = {
+  winner: PropTypes.string,
 }
